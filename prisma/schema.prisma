@@ -12,3 +12,17 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model Finance {
+  id          String        @id @default(cuid())
+  balance     Decimal       @db.Money
+  transaction Transaction[]
+}
+
+model Transaction {
+  id              String   @id @default(cuid())
+  value           Decimal  @db.Money
+  transactionDate DateTime @default(now())
+  financeId       String
+  finance         Finance  @relation(fields: [financeId], references: [id])
+}
