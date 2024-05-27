@@ -1,10 +1,9 @@
 import fastify from 'fastify';
+import { transactions } from './routes/transaction';
 
 const app = fastify()
 
-app.get('/hi', () => {
-  console.log('hello')
-})
+app.register(transactions)
 
 app.listen({
   host: '0.0.0.0',

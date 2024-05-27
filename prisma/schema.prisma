@@ -21,7 +21,7 @@ model Finance {
 
 model Transaction {
   id              String   @id @default(cuid())
-  value           Decimal  @db.Money
+  amount          Decimal  @db.Money
   transactionDate DateTime @default(now())
   financeId       String
   finance         Finance  @relation(fields: [financeId], references: [id])
