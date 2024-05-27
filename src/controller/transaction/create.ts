@@ -5,7 +5,7 @@ import { ZodError, z } from 'zod';
 const prisma = new PrismaClient()
 
 const payloadSchema = z.object({
-  amount: z.coerce.number().safe(),
+  amount: z.number().safe(),
   financeId: z.string().cuid()
 })
 
@@ -13,7 +13,7 @@ export async function create(request: FastifyRequest, reply: FastifyReply) {
   try {
     const { amount, financeId } = payloadSchema.parse(request.body)
 
-    if (+amount == 0) return reply.status(400).send({ message: 'Expected amount different than 0' })
+    if (amount == 0) return reply.status(400).send({ message: 'Expected amount different than 0' })
 
     const transaction = await prisma.transaction.create({
       data: {
