@@ -1,6 +1,6 @@
-import { PrismaClient } from '@prisma/client';
-import { PrismaClientKnownRequestError } from '@prisma/client/runtime/library';
-import { FastifyRequest, FastifyReply } from 'fastify';
+import { PrismaClient } from '@prisma/client'
+import { PrismaClientKnownRequestError } from '@prisma/client/runtime/library'
+import { FastifyRequest, FastifyReply } from 'fastify'
 
 const prisma = new PrismaClient()
 

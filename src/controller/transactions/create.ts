@@ -1,6 +1,6 @@
-import { PrismaClient } from '@prisma/client';
-import { FastifyRequest, FastifyReply } from 'fastify';
-import { ZodError, z } from 'zod';
+import { PrismaClient } from '@prisma/client'
+import { FastifyRequest, FastifyReply } from 'fastify'
+import { ZodError, z } from 'zod'
 
 const prisma = new PrismaClient()
 

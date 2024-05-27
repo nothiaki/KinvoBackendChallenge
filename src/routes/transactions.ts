@@ -1,5 +1,5 @@
 import { FastifyInstance } from 'fastify'
-import * as transactionsController from '../controller/transaction/index'
+import * as transactionsController from '../controller/transactions/index'
 
 const endpoint: string = '/transactions'
 
