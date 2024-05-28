@@ -7,4 +7,5 @@ export async function finances(app: FastifyInstance) {
   app.get(endpoint, financesController.getMany)
   app.get(`${endpoint}/:id`, financesController.getUnique)
   app.post(endpoint, financesController.create)
+  app.delete(`${endpoint}/:id`, financesController.deleteFinance)
 }
