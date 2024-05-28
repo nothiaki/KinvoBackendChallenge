@@ -13,7 +13,7 @@ export async function deleteTransaction(request: FastifyRequest, reply: FastifyR
     //update finance balance: remove transaction amount
     await prisma.finance.update({ where: { id: data.financeId }, data: { balance: { decrement: data.amount } } })
 
-    return reply.status(204).send({ message: 'Transaction deleted succesfully' })
+    return reply.status(204)
 
   } catch (error: unknown) {
     if (error instanceof PrismaClientKnownRequestError) {
