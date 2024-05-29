@@ -1,4 +1,4 @@
 export { create } from './create'
-export { deleteTransaction } from './delete'
+export { del } from './del'
 export { update } from './update'
-export { getMany } from './getMany'
+export { many } from './many'

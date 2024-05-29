@@ -4,7 +4,7 @@ import { FastifyRequest, FastifyReply } from 'fastify'
 
 const prisma = new PrismaClient()
 
-export async function deleteFinance(request: FastifyRequest, reply: FastifyReply) {
+export async function del(request: FastifyRequest, reply: FastifyReply) {
   try {
     const { id } = request.params as { id: string }
 

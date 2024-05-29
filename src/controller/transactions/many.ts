@@ -11,7 +11,7 @@ const querySchema = z.object({
   end: z.string().date().optional()
 })
 
-export async function getMany(request: FastifyRequest, reply: FastifyReply) {
+export async function many(request: FastifyRequest, reply: FastifyReply) {
   try {
     const { page, limit, start, end } = querySchema.parse(request.query)
     const { financeId } = request.params as { financeId: string }

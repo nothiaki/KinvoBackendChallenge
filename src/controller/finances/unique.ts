@@ -1,19 +1,16 @@
 import { PrismaClient } from '@prisma/client'
 import { PrismaClientKnownRequestError } from '@prisma/client/runtime/library'
-import { FastifyRequest, FastifyReply } from 'fastify'
+import { FastifyReply, FastifyRequest } from 'fastify'
 
 const prisma = new PrismaClient()
 
-export async function deleteTransaction(request: FastifyRequest, reply: FastifyReply) {
+export async function unique(request: FastifyRequest, reply: FastifyReply) {
   try {
     const { id } = request.params as { id: string }
 
-    const data = await prisma.transaction.delete({ where: { id } })
+    const data = await prisma.finance.findUnique({ where: { id } })
 
-    //update finance balance: remove transaction amount
-    await prisma.finance.update({ where: { id: data.financeId }, data: { balance: { decrement: data.amount } } })
-
-    return reply.status(204).send()
+    return reply.status(200).send(data)
 
   } catch (error: unknown) {
     if (error instanceof PrismaClientKnownRequestError) {
