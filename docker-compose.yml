@@ -6,3 +6,11 @@ services:
     environment:
       POSTGRES_USER: docker
       POSTGRES_PASSWORD: docker
+  kinvo-backend:
+    container_name: kinvo-backend
+    build:
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+    env_file:
+      - .env
