@@ -10,7 +10,7 @@ export async function unique(request: FastifyRequest, reply: FastifyReply) {
 
     const data = await prisma.finance.findUnique({ where: { id } })
 
-    return reply.status(200).send(data)
+    return reply.status(200).send({ id: data!.id, balance: +data!.balance })
 
   } catch (error: unknown) {
     if (error instanceof PrismaClientKnownRequestError) {

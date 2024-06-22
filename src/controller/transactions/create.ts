@@ -33,13 +33,25 @@ export async function create(request: FastifyRequest, reply: FastifyReply) {
       }
     })
 
-    return reply.status(201).send({ message: 'Transaction made successfully', transaction, finance })
+    return reply.status(201).send({
+      message: 'Transaction made successfully',
+      transaction: {
+        id: transaction.id,
+        amount: +transaction.amount,
+        transactionDate: transaction.transactionDate,
+        financeId: transaction.financeId
+      },
+      finance: {
+        id: finance.id,
+        balance: +finance.balance
+      }
+    })
 
   } catch (error: unknown) {
     if (error instanceof ZodError) {
       return reply.status(400).send({ message: error.issues[0].message })
     }
 
-    return reply.status(520).send({ message: 'Unknown error' })
+    return reply.status(520).send({ message: error })
   }
 }

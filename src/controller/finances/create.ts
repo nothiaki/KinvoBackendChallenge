@@ -16,7 +16,10 @@ export async function create(request: FastifyRequest, reply: FastifyReply) {
       data: { balance }
     })
 
-    return reply.status(201).send({ message: 'Finance created successfully', finance })
+    return reply.status(201).send({
+      message: 'Finance created successfully',
+      finance: { id: finance.id, balance: +finance.balance }
+    })
 
   } catch (error: unknown) {
     if (error instanceof ZodError) {

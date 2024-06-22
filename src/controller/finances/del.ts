@@ -15,7 +15,7 @@ export async function del(request: FastifyRequest, reply: FastifyReply) {
 
   } catch (error: unknown) {
     if (error instanceof PrismaClientKnownRequestError) {
-      return reply.status(404).send({ message: error /*'Finance not found'*/ })
+      return reply.status(404).send({ message: 'Finance not found' })
     }
 
     return reply.status(520).send({ message: 'Unknown error' })

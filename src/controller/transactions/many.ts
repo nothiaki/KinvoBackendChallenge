@@ -16,7 +16,7 @@ export async function many(request: FastifyRequest, reply: FastifyReply) {
     const { page, limit, start, end } = querySchema.parse(request.query)
     const { financeId } = request.params as { financeId: string }
 
-    const data = await prisma.transaction.findMany({
+    const transactions = await prisma.transaction.findMany({
       skip: page,
       take: limit,
       where: {
@@ -27,6 +27,13 @@ export async function many(request: FastifyRequest, reply: FastifyReply) {
             lte: `${end}T00:00:00.000Z`
           }
         })
+      }
+    })
+
+    const data = transactions.map(transaction => {
+      return {
+        ...transaction,
+        amount: Number(transaction.amount)
       }
     })
 

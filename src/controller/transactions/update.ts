@@ -28,7 +28,18 @@ export async function update(request: FastifyRequest, reply: FastifyReply) {
       }
     })
 
-    return reply.status(200).send({ updatedTransaction, finance })
+    return reply.status(200).send({
+      updatedTransaction: {
+        id: updatedTransaction.id,
+        amount: +updatedTransaction.amount,
+        transactionDate: updatedTransaction.transactionDate,
+        financeId: updatedTransaction.financeId
+      },
+      finance: {
+        id: finance.id,
+        balance: +finance.balance
+      }
+    })
 
   } catch (error: unknown) {
     if (error instanceof ZodError) {
